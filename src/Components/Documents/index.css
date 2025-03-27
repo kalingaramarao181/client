@@ -1,0 +1,101 @@
+/* Recent Documents Section */
+.recent-documents {
+    margin-top: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.documents-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    margin-top: 0px;
+}
+
+
+
+/* Table Styling */
+.documents-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.documents-header-row {
+    background: #adadb6;
+    color: black;
+}
+
+.documents-header {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.documents-tbody .documents-row {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Data Cells */
+.documents-data {
+    padding: 12px;
+    text-align: left;
+}
+
+/* Status-Specific Row Colors */
+.status-signed .documents-status {
+    color: green;
+    font-weight: bold;
+}
+
+.status-pending .documents-status {
+    color: orange;
+    font-weight: bold;
+}
+
+.status-expired .documents-status {
+    color: red;
+    font-weight: bold;
+}
+
+/* Hover Effect */
+.documents-row:hover {
+    background: #e6e7e7;
+    color: rgb(61, 61, 61);
+}
+
+.add-signature-btn{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.documents-title-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* View Button */
+.view-btn {
+    background: #009ffd;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s;
+}
+
+.view-btn:hover {
+    background: #5d7fa0;
+}
+
+.documents-link{
+    text-decoration: none;
+    color: white;
+}

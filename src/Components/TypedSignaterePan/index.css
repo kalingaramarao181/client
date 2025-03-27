@@ -1,0 +1,42 @@
+.typed-signature-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px dotted #524d4d;
+    height: auto;
+    width: 90%;
+}
+
+.typed-signature-main-conatiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.typed-signature{
+    font-size: 24px;
+}
+
+.typed-signature-btn-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.typed-signature-clear-btn, .typed-signature-save-btn{
+    width: 70px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.typed-signature-save-btn{
+    background-color: #067706;
+}

@@ -1,0 +1,38 @@
+.sig-container {
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sig-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sig-canvas {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.sig-buttons {
+    margin-top: 10px;
+}
+
+.sig-btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.save {
+    background-color: green;
+    color: white;
+}
+
+.clear {
+    background-color: red;
+    color: white;
+}

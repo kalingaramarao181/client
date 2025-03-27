@@ -1,0 +1,29 @@
+.assign-select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.assign-select:focus{
+    outline: none;
+    border-color: #007bff;
+}
+
+.assign-btn{
+    background-color: #0a703d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.pop-title{
+    color: black;
+}
+
+.upload-label {
+    color: black;
+}

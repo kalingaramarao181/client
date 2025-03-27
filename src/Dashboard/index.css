@@ -1,0 +1,15 @@
+.client{
+    margin-top: 80px;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 280px auto;
+    height: 90vh;
+}
+
+.main-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+

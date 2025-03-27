@@ -1,0 +1,26 @@
+.signature-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.signature-select-type-box{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    height: auto;
+    width: 45%;
+}
+
+.signature-type-select{
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.font1{
+    font-family: 'Alex Brush', cursive;
+}

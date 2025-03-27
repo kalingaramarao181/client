@@ -1,0 +1,97 @@
+/* General styles */
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f0f0;
+    background-image: url('https://img.freepik.com/premium-photo/futuristic-ball-light_34629-882.jpg?uid=R175547614&ga=GA1.1.1224038525.1740066881&semt=ais_hybrid');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* Login Box */
+  .login-box {
+    width: 700px;
+    height: 400px;
+    display: flex;
+    overflow: hidden;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  /* Image Section */
+  .login-image {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #007bff;
+  }
+  
+  .login-image img {
+    width: 70%;
+  }
+  
+  /* Form Section */
+  .login-form {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .login-form button:hover {
+    background: #0056b3;
+  }
+  
+  .login-form a {
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .login-form a:hover {
+    color: #0056b3;
+  }
+  
+  /* Slide effect when clicking "Forgot Password" */
+  .slide {
+    transform: translateX(-100px);
+  }
+  

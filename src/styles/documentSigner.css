@@ -1,0 +1,40 @@
+.doc-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.doc-title {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.doc-actions {
+    margin-top: 20px;
+}
+
+.doc-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.sign-pdf {
+    background-color: blue;
+    color: white;
+}
+
+.sign-img {
+    background-color: purple;
+    color: white;
+}
+
+.sign-word {
+    background-color: orange;
+    color: white;
+}
