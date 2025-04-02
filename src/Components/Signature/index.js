@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import SignaturePad from "../SignaturePad";
-import "./index.css";
 import TypedSignaterePan from "../TypedSignaterePan";
 import PhysicalSignature from "../PhysicalSignature";
+import "./index.css";
 
-const Signature = () => {
+const Signature = ({ onClose }) => {
   const [signatureType, setSignatureType] = useState(null);
   const [typedName, setTypedName] = useState("");
   const [fontStyle, setFontStyle] = useState("");
@@ -23,7 +23,6 @@ const Signature = () => {
     setFontStyle(fontStyles[font]);
   };
 
-  // 20 Stylish Signature Fonts
   const fontStyles = {
     font1: "'Dancing Script', cursive",
     font2: "'Pacifico', cursive",
@@ -48,40 +47,42 @@ const Signature = () => {
   };
 
   return (
-    <div>
-      {/* Load Google Fonts */}
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Great+Vibes&family=Parisienne&family=Satisfy&family=Allura&family=Caveat&family=Lobster&family=Tangerine&family=Homemade+Apple&family=Indie+Flower&family=Zeyada&family=Sacramento&family=Herr+Von+Muellerhoff&family=Calligraffitti&family=Reenie+Beanie&family=Alex+Brush&family=Marck+Script&family=Mr+Dafoe&family=Rochester&display=swap" />
+    <div className="popup-overlay">
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Great+Vibes&family=Parisienne&family=Satisfy&family=Allura&family=Caveat&family=Lobster&family=Tangerine&family=Homemade+Apple&family=Indie+Flower&family=Zeyada&family=Sacramento&family=Herr+Von+Muellerhoff&family=Calligraffitti&family=Reenie+Beanie&family=Alex+Brush&family=Marck+Script&family=Mr+Dafoe&family=Rochester&display=swap" />
+      <div className="popup-content">
+        <h1>Signature</h1>
+        <button className="close-btn" onClick={onClose}>X</button>
 
-      <h1>Signature</h1>
-      <div className="signature-container">
-        <div className="signature-select-type-box">
-          <h2>Select Signature Type</h2>
-          <select onChange={(e) => setSignatureType(e.target.value)} className="signature-type-select">
-            <option value="">Select Signature Type</option>
-            <option value="digitalSignature">Digital Signature</option>
-            <option value="typedSignature">Typed Signature</option>
-            <option value="physicalSignature">Physical Signature</option>
-          </select>
+        <div className="signature-container">
+          <div className="signature-select-type-box">
+            <h2>Select Signature Type</h2>
+            <select onChange={(e) => setSignatureType(e.target.value)} className="signature-type-select">
+              <option value="">Select Signature Type</option>
+              <option value="digitalSignature">Digital Signature</option>
+              <option value="typedSignature">Typed Signature</option>
+              <option value="physicalSignature">Physical Signature</option>
+            </select>
 
-          {signatureType === "typedSignature" && (
-            <>
-              <select style={{ fontFamily: fontStyle }} onChange={(e) => handleFontChange(e.target.value)} className="signature-type-select">
-                <option value="">Select Signature Font</option>
-                {Object.keys(fontStyles).map((fontKey, index) => (
-                  <option style={{ fontFamily: fontStyles[fontKey] }} key={index} value={fontKey}>
-                    {fontKey.replace("font", "Signature Font ")}
-                  </option>
-                ))}
-              </select>
+            {signatureType === "typedSignature" && (
+              <>
+                <select style={{ fontFamily: fontStyle }} onChange={(e) => handleFontChange(e.target.value)} className="signature-type-select">
+                  <option value="">Select Signature Font</option>
+                  {Object.keys(fontStyles).map((fontKey, index) => (
+                    <option style={{ fontFamily: fontStyles[fontKey] }} key={index} value={fontKey}>
+                      {fontKey.replace("font", "Signature Font ")}
+                    </option>
+                  ))}
+                </select>
 
-              <input onChange={(e) => setTypedName(e.target.value)} type="text" placeholder="Enter your name" className="signature-type-select" />
-            </>
-          )}
-        </div>
+                <input onChange={(e) => setTypedName(e.target.value)} type="text" placeholder="Enter your name" className="signature-type-select" />
+              </>
+            )}
+          </div>
 
-        <div className="signature-select-type-box">
-          <h2>Signature Preview</h2>
-          {renderSignaturePan()}
+          <div className="signature-select-type-box">
+            <h2>Signature Preview</h2>
+            {renderSignaturePan()}
+          </div>
         </div>
       </div>
     </div>

@@ -1,25 +1,34 @@
-import React from "react";
-import "./index.css";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./index.css";
+import LogoutConfirm from "../LogoutConfirm";
+import { useLocation } from "react-router-dom";
 
-const Navbar = () => {
+
+const Navbar = ({ shortName}) => {
+
+  const [openLogoutConfirm, setOpenLogoutConfirm] = useState(false);
+
+
+   
+
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <img src="images/applogo.png" alt="Logo" className="navbar-logo" />
-        <div className="navbar-content">
-          <ul className="navbar-list">
-            <li className="nav-item">Home</li>
-            <li className="nav-item">About</li>
-            <li className="nav-item">Contact</li>
-            <li className="nav-item">Service</li>
+    <div className="ezy-sidebar">
+        <img src="images/applogo.png" alt="Logo" className="ezy-logo" />
+        <nav className="ezy-nav">
+          <ul>
+            <Link className="ezy-nav-link" to={"/dashboard"}><li className={`ezy-nav-item ${useLocation().pathname === "/dashboard" && "active"}`}>Home</li></Link>
+            <Link className="ezy-nav-link" to={"/dashboard/agreements"}><li className={`ezy-nav-item ${useLocation().pathname === "/dashboard/agreements" && "active" }`}>Agreements</li></Link>
+            <Link className="ezy-nav-link" to={"/dashboard/templates"}><li className={`ezy-nav-item ${useLocation().pathname === "/dashboard/templates" && "active" }`}>Templates</li></Link>
+            <Link className="ezy-nav-link" to={"/dashboard"}><li className="ezy-nav-item">Admin</li></Link>
           </ul>
-          <Link className="login-link" to={"/"}>
-            <button className="nav-button login-btn">Log in</button>
-          </Link>
-        </div>
+          <div className="ezy-navbar-actions">
+            <button className="ezy-btn-buy"  onClick={() => setOpenLogoutConfirm(true)} >Logout</button>
+            <div className="ezy-avatar">{shortName}</div>
+          </div>
+        </nav>
+      {openLogoutConfirm && <LogoutConfirm onClose={() => setOpenLogoutConfirm(false)} />}
       </div>
-    </nav>
   );
 };
 

@@ -1,0 +1,169 @@
+/* Inbox Page Container */
+.inbox-container {
+    display: flex;
+    height: 88vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background: #f3f4f6;
+    padding: 16px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .sidebar-menu {
+    margin-top: 20px;
+  }
+  
+  .menu-item {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 16px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .menu-item:hover {
+    color: #4f46e5;
+  }
+
+  .menu-item.active {
+    color: #4f46e5;
+  }
+  
+  /* Main Content */
+  .inbox-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .inbox-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* Filter Bar */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .filter-btn {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .filter-btn:hover {
+    background: #f3f4f6;
+  }
+  
+  /* Document List */
+  .document-list {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  
+  .document-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .document-item:hover {
+    background: #f9f9f9;
+  }
+  
+  .document-info {
+    flex: 1;
+  }
+  
+  .document-name {
+    font-weight: bold;
+  }
+  
+  .document-recipient {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Actions */
+  .document-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .document-status {
+    font-size: 14px;
+    text-align: right;
+  }
+  
+  .sign-btn {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .sign-btn:hover {
+    background: #4338ca;
+  }
+  
+  .menu-icon {
+    cursor: pointer;
+  }
+  
+  /* Buttons */
+  .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .primary-btn {
+    background: #4f46e5;
+    color: white;
+    border: none;
+  }
+  
+  .primary-btn:hover {
+    background: #4338ca;
+  }
+  
+  .outline-btn {
+    background: none;
+    border: 1px solid #4f46e5;
+    color: #4f46e5;
+  }
+  
+  .outline-btn:hover {
+    background: #f3f4f6;
+  }
+  

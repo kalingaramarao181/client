@@ -1,35 +1,97 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import Sidebar from "../Components/Sidebar";
-import Header from "../Components/Header";
-import Overview from "../Components/Overview";
-import Documents from "../Components/Documents";
-
+import { Routes, Route } from "react-router-dom";
 import "./index.css";
 import Teams from "../Components/Teams";
-import PendingSignatures from "../Components/PendingSignatures";
 import Profile from "../Components/Profile";
 import Signature from "../Components/Signature";
+import DashboardHome from "../Components/DashboardHome";
+import Agreements from "../Components/Agreements";
+import { getUserDetails } from "../api/authApi";
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Navbar from "../Components/Navbar";
+import TemplatesPage from "../Components/Templates";
+import { getDocuments } from "../api/documentApi";
 
 const Dashboard = () => {
-    const location = useLocation();
-    return (
-        <div className="client">
-            <div className="dashboard-container">
-                <Sidebar />
-                <main className="main-content">
-                    <Header />
-                    {location.pathname === "/dashboard" &&  <Overview />}
-                    <Routes>
-                        <Route path="/" element={<Documents />} />
-                        <Route path="/teams" element={<Teams />} />
-                        <Route path="/pending" element={<PendingSignatures />} />
-                        <Route path="/settings" element={<Profile />} />
-                        <Route path="/signature" element={<Signature />} />
-                    </Routes>
-                </main>
-            </div>
-        </div>
-    );
+  const [userDetails, setUserDetails] = useState({});
+  const [shortName, setShortName] = useState("");
+
+  const [documents, setDocuments] = useState([]);
+      
+        useEffect(() => {
+          const fetchUserData = async () => {
+            try {
+              const token = Cookies.get("jwtToken");
+              if (!token) {
+                console.error("JWT Token not found");
+                return;
+              }
+      
+              const decodedToken = jwtDecode(token);
+              if (!decodedToken?.id) {
+                console.error("Invalid token structure");
+                return;
+              }
+              const userId = decodedToken.id;
+              const [documentsData] = await Promise.all([getDocuments(userId)]);
+      
+              if (Array.isArray(documentsData)) {
+                setDocuments(documentsData);
+              } else {
+                console.error("Unexpected API response format:", documentsData);
+              }
+            } catch (error) {
+              console.error("Error fetching data:", error);
+            }
+          };
+      
+          fetchUserData();
+        }, []);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = Cookies.get("jwtToken");
+        if (!token) throw new Error("No JWT token found");
+
+        const decoded = jwtDecode(token);
+        const userId = decoded.id;
+
+        const userData = await getUserDetails(userId);
+        setUserDetails(userData);
+        setShortName(
+          userData.fullName
+            .split(" ")
+            .map((word) => word[0])
+            .join("")
+            .slice(0, 2) || ""
+        );
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    fetchUser();
+  }, []);
+  return (
+    <div className="client">
+      <Navbar shortName={shortName} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <DashboardHome documents={documents} userDetails={userDetails} shortName={shortName}  />
+          }
+        />
+        <Route path="/agreements" element={<Agreements documents={documents} />} />
+        <Route path="/teams" element={<Teams />} />
+        <Route path="/templates" element={<TemplatesPage />} />
+        <Route path="/settings" element={<Profile />} />
+        <Route path="/signature" element={<Signature />} />
+      </Routes>
+    </div>
+  );
 };
 
 export default Dashboard;

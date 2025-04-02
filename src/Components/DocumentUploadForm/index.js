@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { uploadDocument } from "../../api/documentApi";
 import { getUsersByRole } from "../../api/authApi";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 import "./index.css";
 
-const DocumentUploadForm = ({ onClose }) => {
+const DocumentUploadForm = ({ fullName, onClose }) => {
   const [file, setFile] = useState(null);
-  const [signerUsers, setSignerUsers] = useState([]); // List of signer users
-  const [signerUser, setSignerUser] = useState(""); // Selected signer user ID
-  const [signerUserEmail, setSignerUserEmail] = useState(""); // Selected signer's email
+  const [signerUsers, setSignerUsers] = useState([]);
+  const [signerUser, setSignerUser] = useState("");
+  const [signerUserEmail, setSignerUserEmail] = useState("");
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
+  const [onlySigner, setOnlySigner] = useState(false);
 
-  // Fetch signer users when component loads
+  const loggedInUser = jwtDecode(Cookies.get("jwtToken"));
+  console.log("Logged In User:", loggedInUser);
+  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -19,16 +27,13 @@ const DocumentUploadForm = ({ onClose }) => {
         console.error("Error fetching signer users:", error);
       }
     };
-
     fetchUserData();
   }, []);
 
-  // Handle file selection
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
-  // Handle file drag and drop
   const handleDrop = (e) => {
     e.preventDefault();
     setFile(e.dataTransfer.files[0]);
@@ -38,29 +43,30 @@ const DocumentUploadForm = ({ onClose }) => {
     e.preventDefault();
   };
 
-  // Handle document upload
   const handleSubmit = async () => {
     if (!file) {
       alert("Please select a file");
       return;
     }
-    if (!signerUser) {
-      alert("Please select a signer user");
+    if (!signerUserEmail) {
+      alert("Signer user's email is required");
       return;
     }
-    if (!signerUserEmail) {
-      alert("Signer user's email is missing");
+    if (!emailSubject || !emailMessage) {
+      alert("Email subject and message are required");
       return;
     }
 
     const formData = new FormData();
     formData.append("document", file);
-    formData.append("signerUser", signerUser);
-    formData.append("signerUserEmail", signerUserEmail); 
+    formData.append("signerUser", onlySigner ? loggedInUser?.id : signerUser);
+    formData.append("signerUserEmail", onlySigner ? loggedInUser?.email : signerUserEmail);
+    formData.append("emailSubject", emailSubject);
+    formData.append("emailMessage", emailMessage);
+    formData.append("documentUser", fullName)
 
     try {
-      const res = await uploadDocument(formData);
-      console.log("Upload Response:", res);
+      await uploadDocument(formData);
       alert("Document uploaded and email sent successfully");
       onClose();
     } catch (err) {
@@ -74,7 +80,6 @@ const DocumentUploadForm = ({ onClose }) => {
       <div className="popup-content">
         <h3 className="popup-title">Upload Document</h3>
 
-        {/* Drag and Drop Area */}
         <div
           className="file-drop-area"
           onDrop={handleDrop}
@@ -99,30 +104,100 @@ const DocumentUploadForm = ({ onClose }) => {
           </p>
         </div>
 
-        {/* Signer Selection Dropdown */}
-        <select
-          onChange={(e) => {
-            const selectedUserId = e.target.value;
-            setSignerUser(selectedUserId);
+        <div className="signer-info-container">
+          <div className="signer-info">
+            <h2 className="popup-title">Add recipients</h2>
 
-            // Find the selected user's email
-            const selectedUser = signerUsers.find(user => String(user.id) === selectedUserId);
-            setSignerUserEmail(selectedUser ? selectedUser.email : ""); 
-          }}
-          className="assign-select"
-          required
-        >
-          <option className="assign-option" value="">
-            Assign to
-          </option>
-          {signerUsers.map((user) => (
-            <option value={user.id} key={user.id}>
-              {user.name}
+            <div className="only-signer-checkbox">
+              <input
+                className="only-signer-input"
+                id="only-signer"
+                type="checkbox"
+                checked={onlySigner}
+                onChange={() => {
+                  setOnlySigner(!onlySigner);
+                  if (!onlySigner) {
+                    setSignerUser(loggedInUser.id);
+                    setSignerUserEmail(loggedInUser.email);
+                  } else {
+                    setSignerUser("");
+                    setSignerUserEmail("");
+                  }
+                }}
+              />
+              <label className="only-signer-label" htmlFor="only-signer">
+                I'm the only signer
+              </label>
+            </div>
+
+            {!onlySigner && (
+              <>
+                <label>Name</label>
+                <input
+                  className="signer-name-input"
+                  type="text"
+                  onChange={(e) => setSignerUser(e.target.value)}
+                />
+
+                <label>Email</label>
+                <input
+                  className="signer-email-input"
+                  type="email"
+                  value={signerUserEmail}
+                  onChange={(e) => setSignerUserEmail(e.target.value)}
+                />
+              </>
+            )}
+          </div>
+
+          <div className="signer-info">
+            <h2 className="popup-title">Add message</h2>
+
+            <label>Email Subject</label>
+            <input
+              className="email-subject-input"
+              type="text"
+              value={emailSubject}
+              onChange={(e) => setEmailSubject(e.target.value)}
+            />
+
+            <label>Email Message</label>
+            <textarea
+              rows="4"
+              cols="50"
+              placeholder="Type your message here..."
+              className="email-message-textarea"
+              value={emailMessage}
+              onChange={(e) => setEmailMessage(e.target.value)}
+            ></textarea>
+          </div>
+        </div>
+
+        {!onlySigner && (
+          <select
+            onChange={(e) => {
+              const selectedUserId = e.target.value;
+              setSignerUser(selectedUserId);
+
+              const selectedUser = signerUsers.find(
+                (user) => String(user.id) === selectedUserId
+              );
+              setSignerUserEmail(selectedUser ? selectedUser.email : "");
+            }}
+            className="assign-select"
+            required
+          >
+            <option className="assign-option" value="">
+              Assign to
             </option>
-          ))}
-        </select>
+            {signerUsers.map((user) => (
+              <option value={user.id} key={user.id}>
+                {user.name}
+              </option>
+            ))}
+          </select>
+        )}
 
-        {/* Buttons */}
         <div className="popup-buttons">
           <button onClick={onClose} className="cancel-btn">
             Cancel

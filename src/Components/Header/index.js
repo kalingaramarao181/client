@@ -1,52 +1,48 @@
-import { useEffect, useState } from "react";
-import DocumentUploadForm from "../DocumentUploadForm";
-import { getUserDetails } from "../../api/authApi";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
 import "./index.css";
+import Signature from "../Signature";
+import { Pencil } from "lucide-react";
 
-const Header = () => {
-    const [showPopup, setShowPopup] = useState(false);
-    const [userDetails, setUserDetails] = useState({});
+const Header = ({documents, fullName, shortName }) => {
+  const [showPopup, setShowPopup]= useState(false);
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const token = Cookies.get("jwtToken");
-                if (!token) throw new Error("No JWT token found");
-
-                const decoded = jwtDecode(token);
-                const userId = decoded.id;
-
-                const userData = await getUserDetails(userId);
-                setUserDetails(userData);
-            } catch (err) {
-                console.log(err.message);
-            }
-        };
-
-        fetchUser();
-    }, []);
-    
-
-    const openPopup = () => {
-        setShowPopup(true);
-    };
-
-    const closePopup = () => {
-        setShowPopup(false);
-    };
-
-    return (
-        <div className="header">
-            <h1 className="header-title">Welcome, {userDetails.fullName}</h1>
-            <button className="add-document-btn" onClick={openPopup}>
-                + New Document
-            </button>
-
-            {showPopup && <DocumentUploadForm onClose={closePopup} />}
+  const pendingDocuments = documents.filter((document) => document.status === "pending").length;
+  const completedDocuments = documents.filter((document) => document.status === "signed").length;
+  return (
+    <>
+    <div className="ezy-navbar">
+      <div className="ezy-welcome">
+        <h2>Welcome back</h2>
+        <p>
+          <span className="ezy-avatar-name">{shortName}</span>
+          {fullName} <span className="ezy-pencil" onClick={() => setShowPopup(true)}> <Pencil size={24} /></span>
+        </p>
+      </div>
+      <div className="ezy-header-actions">
+        <p className="ezy-header-actions-title">Last 6 Months</p>
+        <div className="ezy-header-actions-list">
+          <p className="ezy-header-actions-item">
+            <span className="ezy-badge">{documents.length}</span>
+            <span className="ezy-badge-title">Action Required</span>
+          </p>
+          <p className="ezy-header-actions-item">
+            <span className="ezy-badge">{pendingDocuments}</span>
+            <span className="ezy-badge-title">Waiting for Others</span>
+          </p>
+          <p className="ezy-header-actions-item">
+            <span className="ezy-badge">0</span>
+            <span className="ezy-badge-title">Expiring Soon</span>
+          </p>
+          <p className="ezy-header-actions-item">
+            <span className="ezy-badge">{completedDocuments}</span>
+            <span className="ezy-badge-title">Completed</span>
+          </p>
         </div>
-    );
+      </div>
+    </div>
+    {showPopup && <Signature onClose={() => setShowPopup(false)} />}
+    </>
+  );
 };
 
 export default Header;

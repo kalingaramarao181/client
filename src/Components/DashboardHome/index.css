@@ -1,0 +1,232 @@
+/* General Styles */
+.ezy-container {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    height: 100vh;
+  }
+
+  
+  
+  /* Top Navigation Bar */
+  
+
+  
+  
+  
+  
+
+  .ezy-welcome{
+    font-size: 24px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .ezy-welcome p{
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  
+  
+  .ezy-sends-left {
+    margin-right: 15px;
+    color: #ddd;
+  }
+  
+  .ezy-btn-buy {
+    background-color: #4c49ed;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .ezy-avatar {
+    width: 35px;
+    height: 35px;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: 15px;
+  }
+
+  .ezy-avatar-name{
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    color: #4c49ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;  
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-right: 20px;
+  }
+  
+  /* Main Content */
+  .ezy-main {
+    padding: 20px;
+  }
+  
+  /* Progress Bar */
+  .ezy-progress-container {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .ezy-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .ezy-progress {
+    height: 8px;
+    background-color: #4c49ed;
+    border-radius: 5px;
+  }
+  
+  /* Grid Layout */
+  .ezy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Cards */
+  .ezy-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Upload Section */
+  .ezy-upload-card {
+    border: 2px dashed #4c49ed;
+    padding: 30px;
+    cursor: pointer;
+  }
+  
+  .ezy-drag-drop {
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ezy-btn-upload {
+    background-color: #4c49ed;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .ezy-document-list {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ezy-document-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ezy-document-list th,
+  .ezy-document-list td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .ezy-document-list th {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: normal;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .ezy-document-list tr {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .ezy-document-list tr:last-child {
+    border-bottom: none;
+  }
+  
+  .ezy-document-list td {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .status-completed {
+    color: #28a745;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .status-completed::before {
+    content: "✔";
+    margin-right: 8px;
+    color: #28a745;
+  }
+  
+  .status-inprogress {
+    color: #6a0dad;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .status-inprogress::before {
+    content: "●";
+    margin-right: 8px;
+    color: #6a0dad;
+  }
+  
+  .ezy-btn-download,
+  .ezy-btn-move {
+    padding: 8px 14px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .ezy-btn-download {
+    background: #560dbd;
+    color: white;
+  }
+  
+  .ezy-btn-move {
+    background: #6c757d;
+    color: white;
+  }
+  
+  .ezy-btn-download:hover {
+    background: #2f13cf;
+  }
+  
+  .ezy-btn-move:hover {
+    background: #5a6268;
+  }
+  
+  
