@@ -1,0 +1,173 @@
+/* Main Container */
+.settings-container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Sidebar */
+  .settings-sidebar {
+    width: 250px;
+    background: #f3f4f6;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .sidebar-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .account-id {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .settings-menu {
+    margin-top: 10px;
+  }
+  
+  .menu-section {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #777;
+    margin-top: 15px;
+  }
+  
+  .menu-item {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .menu-item.active {
+    font-weight: bold;
+    color: #4f46e5;
+  }
+  
+  .menu-item:hover {
+    color: #4f46e5;
+  }
+  
+  /* Main Content */
+  .settings-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Sections */
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* Search Section */
+  .search-section {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    margin-bottom: 10px;
+  }
+  
+  .search-box label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .user-search {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .dropdown {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-btn {
+    padding: 8px 12px;
+    background: #ccc;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+  }
+  
+  /* Notifications Section */
+  .notifications-section {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .filter-btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .filter-extra {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .reset-btn {
+    background: none;
+    border: none;
+    color: #4f46e5;
+    cursor: pointer;
+  }
+  
+  .settings-icon {
+    cursor: pointer;
+  }
+  
+  .notification-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .notification-time {
+    font-size: 12px;
+    color: #777;
+  }
+  

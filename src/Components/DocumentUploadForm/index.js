@@ -59,7 +59,7 @@ const DocumentUploadForm = ({ fullName, onClose }) => {
 
     const formData = new FormData();
     formData.append("document", file);
-    formData.append("signerUser", onlySigner ? loggedInUser?.id : signerUser);
+    formData.append("signerUser", onlySigner ? loggedInUser?.email : signerUserEmail);
     formData.append("signerUserEmail", onlySigner ? loggedInUser?.email : signerUserEmail);
     formData.append("emailSubject", emailSubject);
     formData.append("emailMessage", emailMessage);
@@ -72,6 +72,8 @@ const DocumentUploadForm = ({ fullName, onClose }) => {
     } catch (err) {
       console.error("Upload Error:", err);
       alert("Failed to upload document");
+      console.log(signerUser);
+      
     }
   };
 

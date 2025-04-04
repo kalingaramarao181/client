@@ -150,6 +150,11 @@
     margin: 0px;
   }
 
+  .ezy-header-actions-item-link{
+    text-decoration: none;
+    color: #f7f7f7;
+  }
+
   .ezy-header-actions-item{
     display: flex;
     flex-direction: column;
@@ -158,6 +163,8 @@
     padding: 16px;
     border-radius: 5px;
     width: 25%;
+    text-decoration: none;
+    color: #f7f7f7;
   }
 
   .ezy-header-actions-item:hover{

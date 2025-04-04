@@ -12,11 +12,11 @@ import Cookies from "js-cookie";
 import Navbar from "../Components/Navbar";
 import TemplatesPage from "../Components/Templates";
 import { getDocuments } from "../api/documentApi";
+import AdminPage from "../Components/Admin";
 
 const Dashboard = () => {
   const [userDetails, setUserDetails] = useState({});
   const [shortName, setShortName] = useState("");
-
   const [documents, setDocuments] = useState([]);
       
         useEffect(() => {
@@ -27,7 +27,6 @@ const Dashboard = () => {
                 console.error("JWT Token not found");
                 return;
               }
-      
               const decodedToken = jwtDecode(token);
               if (!decodedToken?.id) {
                 console.error("Invalid token structure");
@@ -45,7 +44,6 @@ const Dashboard = () => {
               console.error("Error fetching data:", error);
             }
           };
-      
           fetchUserData();
         }, []);
 
@@ -84,7 +82,10 @@ const Dashboard = () => {
             <DashboardHome documents={documents} userDetails={userDetails} shortName={shortName}  />
           }
         />
+        <Route path="/agreements/:tab" element={<Agreements documents={documents} />} />
         <Route path="/agreements" element={<Agreements documents={documents} />} />
+
+        <Route path="/admin" element={<AdminPage documents={documents} />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/settings" element={<Profile />} />

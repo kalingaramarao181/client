@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./index.css";
 import Signature from "../Signature";
 import { Pencil } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = ({documents, fullName, shortName }) => {
   const [showPopup, setShowPopup]= useState(false);
@@ -21,22 +22,23 @@ const Header = ({documents, fullName, shortName }) => {
       <div className="ezy-header-actions">
         <p className="ezy-header-actions-title">Last 6 Months</p>
         <div className="ezy-header-actions-list">
-          <p className="ezy-header-actions-item">
+          
+          <Link to="/dashboard/agreements/action-required" className="ezy-header-actions-item">
             <span className="ezy-badge">{documents.length}</span>
             <span className="ezy-badge-title">Action Required</span>
-          </p>
-          <p className="ezy-header-actions-item">
+          </Link>
+          <Link to="/dashboard/agreements/sent" className="ezy-header-actions-item">
             <span className="ezy-badge">{pendingDocuments}</span>
             <span className="ezy-badge-title">Waiting for Others</span>
-          </p>
-          <p className="ezy-header-actions-item">
+          </Link>
+          <Link to="/dashboard/agreements/completed" className="ezy-header-actions-item">
             <span className="ezy-badge">0</span>
             <span className="ezy-badge-title">Expiring Soon</span>
-          </p>
-          <p className="ezy-header-actions-item">
+          </Link>
+          <Link to="/dashboard/agreements/completed" className="ezy-header-actions-item">
             <span className="ezy-badge">{completedDocuments}</span>
             <span className="ezy-badge-title">Completed</span>
-          </p>
+          </Link>
         </div>
       </div>
     </div>

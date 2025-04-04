@@ -77,7 +77,7 @@ const Documents = () => {
               <td className="documents-data documents-name">
                 {document.title}
               </td>
-              <td className="documents-data documents-status">
+              <td style={{color: document.status === "pending" ? "yello" : "green"}} className="documents-data documents-status">
                 {document.status}
               </td>
               <td className="documents-data documents-date">

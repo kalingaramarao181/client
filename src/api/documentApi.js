@@ -9,6 +9,15 @@ import axiosInstance from "./axiosInstance";
   return response.data;
 };
 
+export const updateDocument = async (formData, documentId) => {
+  const response = await axiosInstance.post(`/update-document/${documentId}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+};
+
 export const getSignerDocuments = async (userId) => {
   const response = await axiosInstance.get(`/document-by-signer/${userId}`);
   return response.data;

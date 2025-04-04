@@ -1,0 +1,27 @@
+.documet-status{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.status-icon{
+    font-size: 28px;
+    margin-right: 10px;
+}
+
+.ezy-documents-action{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.ezy-btn-sign{
+    background: #07ad52;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
